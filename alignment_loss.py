@@ -10,9 +10,6 @@ from skimage import measure
 from skimage import filters
 
 from data_loader import DataLoader
-from net_canny import edgeDetector
-
-
 
 
 class AlignLoss(torch.nn.Module):
@@ -29,9 +26,6 @@ class AlignLoss(torch.nn.Module):
 
         self.L2_criterion = torch.nn.L1Loss()
         self.L2_criterion = self.L2_criterion.cuda()
-
-        self.canny = edgeDetector()
-        self.canny = self.canny.cuda()
 
 
     def makeProjection(self, gti_b, inj_b, trs_b, rot_b, sca_b):
@@ -144,16 +138,6 @@ class AlignLoss(torch.nn.Module):
         #io.imsave("gti.tif", np.uint8(255*gti[0,:,:]))
         #io.imsave("proj.tif", np.uint8(255*proj[0,:,:]))
         #exit()
-
-        #proj_canny = proj.unsqueeze(1)
-        #proj_canny = self.canny(proj_canny)
-        #proj_canny = proj_canny.squeeze()
-        #print(torch.min(proj_canny), torch.max(proj_canny))
-
-        #gti_canny = gti.unsqueeze(1)
-        #gti_canny = self.canny(gti_canny)
-        #gti_canny = gti_canny.squeeze()
-        #print(torch.min(gti_canny), torch.max(proj_canny))
 
         b = self.border
         loss_L1 = self.L1_criterion(proj[:, b:-b, b:-b], gti[:, b:-b, b:-b])

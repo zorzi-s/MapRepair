@@ -25,16 +25,16 @@ from data_loader import DataLoader
 
 
 def train(models_path='./saved_models/', batch_size=2, \
-    start_epoch=1, epochs=500, n_batches=1000, start_lr=0.0001):
+    start_epoch=1, epochs=500, n_batches=1000, start_lr=0.0001, save_sample=100):
     Tensor = torch.cuda.FloatTensor
 
     border = var.BORDER
     window_size = var.WS
 
     net = R2U_Net(img_ch=3+1, t=2)
-    #net = R2AttU_Net(img_ch=3+2, t=2)
-    #net = DeepLab()
-    net.load_state_dict(torch.load(var.MODEL))
+
+    if var.LOAD_MODEL_WEIGHTS:
+        net.load_state_dict(torch.load(var.MODEL))
 
     net = net.cuda()
 
@@ -103,7 +103,7 @@ def train(models_path='./saved_models/', batch_size=2, \
                     loss_net_buffer4.push(inj_loss.item()), )
             train_iterator.set_description(status)
 
-            if (i % 1 == 0):
+            if (i % save_sample == 0):
                 mask = gti[:,0,:,:].unsqueeze(1)
                 mask = torch.cat((mask, mask), dim=1)
                 #rgb[:,:,border,:] = 1
