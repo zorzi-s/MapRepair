@@ -83,6 +83,7 @@ def flow2rgb(flow, max_value=None):
 
 
 def sample_images(sample_index, img, flow, masks, debug=True):
+    os.makedirs("./debug/", exist_ok=True)
     batch = img.shape[0]
 
     img = img.permute(0,2,3,1)
@@ -104,7 +105,6 @@ def sample_images(sample_index, img, flow, masks, debug=True):
             io.imsave("./debug/debug_%d_img.png" % sample_index, np.uint8(255*img[0]))
 
     line_mode = "inner"
-
     for i in range(len(masks)):
         row = np.copy(ip[0,:,:,:])
         line = cv2.Canny(masks[i][0,:,:], 0, 255)
@@ -116,11 +116,15 @@ def sample_images(sample_index, img, flow, masks, debug=True):
             row = np.concatenate((row, pic), 1)
         masks[i] = row
 
+
     flow = (flow - torch.min(flow)) / (torch.max(flow) - torch.min(flow))
     row = flow2rgb(flow[0,:,:,:])
+    if debug:
+        io.imsave("./debug/debug_%d_flow.png" % sample_index, np.uint8(255*row))
     for i in range(1,batch):
         row = np.concatenate((row, flow2rgb(flow[i,:,:])), axis=1)
     masks.append(row*255)
+
 
     img = np.concatenate(masks, 0)
     img = np.rot90(img)
