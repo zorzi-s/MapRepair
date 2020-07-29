@@ -1,8 +1,12 @@
 # MapRepair
+This repository contains the implementation for our publication "Map-Repair: Deep Cadastre Maps Alignment and Temporal Inconsistencies Fix in Satellite Images". 
+If you use this implementation please cite the following publication:
 
-Deep Cadastre Maps Alignment and Temporal Inconsistencies Fix in Satellite Images (IGARSS 2020)
+~~~
+https://arxiv.org/abs/2007.12470
+~~~
 
-
+<p align="center"><img width=100% src="README.gif"></p>
 
 ## Getting Started
 
