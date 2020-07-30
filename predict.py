@@ -1,5 +1,6 @@
 import os
 import glob
+import sys
 
 import torch
 from torch import nn
@@ -23,6 +24,7 @@ from network import R2U_Net
 from alignment_loss import AlignLoss
 from models import GeneratorResNet, Encoder
 from regularization_lib import regularization
+
 
 def copyGeoreference(inp, output):
     dataset = gdal.Open(inp)
@@ -165,9 +167,24 @@ def align_gti(rgb, gti, dir_model):
     G = None
 
     return aligned, missing
+
+
+def prepare_input_data(rgb, gti):
+    assert len(rgb.shape) == 3
+    if len(gti.shape) == 3:
+        gti = gti[:,:,2]
+    
+    rgb = rgb.astype(np.float32)
+    gti = gti.astype(np.float32)
+    if np.amax(rgb) > 1:
+        rgb = rgb / 255.0
+    if np.amax(gti) > 1:
+        gti = gti / 255.0
+    
+    return rgb, gti
     
 
-def align(dataset_rgb=var.PREDICTION_RGB, dataset_gti=var.PREDICTION_GTI, dir_model=var.MODEL):
+def align(dataset_rgb=var.PREDICTION_RGB, dataset_gti=var.PREDICTION_GTI, out_folder=var.OUT_FOLDER, dir_model=var.PREDICTION_MODEL):
 
     rgb_files = glob.glob(dataset_rgb)
     gti_files = glob.glob(dataset_gti)
@@ -175,26 +192,25 @@ def align(dataset_rgb=var.PREDICTION_RGB, dataset_gti=var.PREDICTION_GTI, dir_mo
     gti_files.sort()
 
     for rgb_filename, gti_filename in tqdm(zip(rgb_files, gti_files), total=len(rgb_files), desc="Prediction"):
-        #filename = rgb_filename.replace(dir, "prediction_" + dir)
-        #filename = filename.replace("/images", "")
+        out_file = os.path.basename(rgb_filename)
+        out_file = out_folder + out_file
+        #out_file = os.path.splitext(out_file)[0]
 
         rgb = io.imread(rgb_filename)
         gti = io.imread(gti_filename)
 
-        rgb = rgb.astype(np.float32) / 255.0
-        gti = gti.astype(np.float32) / 255.0
+        rgb, gti = prepare_input_data(rgb, gti)
 
-        for i in range(1):
-            print("Iteration %d" % (i+1))
-            aligned, missing = align_gti(rgb, gti, dir_model)
-            aligned = aligned.squeeze()
-            missing = missing.squeeze()
-            gti = aligned
+        #for i in range(1):
+        #    print("Iteration %d" % (i+1))
+        aligned, missing = align_gti(rgb, gti, dir_model)
+        aligned = aligned.squeeze()
+        missing = missing.squeeze()
+        #gti = aligned
 
-        cv2.imwrite("aligned.tif", np.uint8(aligned*255))
-        cv2.imwrite("missing.tif", np.uint8(missing*255))
-        copyGeoreference(rgb_filename, "aligned.tif")
-        copyGeoreference(rgb_filename, "missing.tif")
+        final = np.logical_or(aligned, missing)
+        cv2.imwrite(out_file, np.uint8(final*255))
+        copyGeoreference(rgb_filename, out_file)
 
 
 if __name__ == '__main__':

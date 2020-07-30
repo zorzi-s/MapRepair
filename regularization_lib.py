@@ -26,6 +26,7 @@ def to_categorical(y, num_classes=None, dtype='float32'):
     categorical = np.reshape(categorical, output_shape)
     return categorical
 
+
 def predict_building(rgb, mask, model):
 	Tensor = torch.cuda.FloatTensor
 

@@ -3,6 +3,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn import init
 
+"""
+MapRepair model
+"""
+
 
 def init_weights(net, init_type='normal', gain=0.02):
     def init_func(m):

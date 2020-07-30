@@ -125,20 +125,6 @@ class AlignLoss(torch.nn.Module):
 
         proj = self.makeProjection(mod, seg_inj, trs, rot, sca)
 
-        #print(torch.min(rgb), torch.max(rgb))
-        #print(torch.min(mod), torch.max(mod))
-        #print(torch.min(gti), torch.max(gti))
-        #print(torch.min(proj), torch.max(proj))
-        #rgb = rgb.detach().cpu().numpy()
-        #mod = mod.detach().cpu().numpy()
-        #gti = gti.detach().cpu().numpy()
-        #proj = proj.detach().cpu().numpy()
-        #io.imsave("rgb.tif", np.uint8(255*rgb[0,:,:,:]))
-        #io.imsave("mod.tif", np.uint8(255*mod[0,:,:]))
-        #io.imsave("gti.tif", np.uint8(255*gti[0,:,:]))
-        #io.imsave("proj.tif", np.uint8(255*proj[0,:,:]))
-        #exit()
-
         b = self.border
         loss_L1 = self.L1_criterion(proj[:, b:-b, b:-b], gti[:, b:-b, b:-b])
         loss_L2 = self.L2_criterion(proj[:, b:-b, b:-b], gti[:, b:-b, b:-b])
@@ -146,56 +132,6 @@ class AlignLoss(torch.nn.Module):
 
         proj = proj != 0
         proj = proj.unsqueeze(1)
-        #proj = torch.cat((1-proj, proj), dim=1)
-        #proj = torch.argmax(proj, dim=1)
-        #proj = proj.unsqueeze(1)
-
-        """
-        rand = random.randint(0,99)
-        proj = proj.cpu().numpy()
-        p1 = proj[0]
-        p2 = proj[1]
-        io.imsave("./debug/%d_p1.tif" % rand, np.uint8(255*p1))
-        #io.imsave("./debug/%d_p2.tif" % rand, np.uint8(255*p2))
-
-        mod = mod.cpu().numpy()
-        p1 = mod[0]
-        p2 = mod[1]
-        io.imsave("./debug/%d_g1.tif" % rand, np.uint8(255*p1))
-        #io.imsave("./debug/%d_g2.tif" % rand, np.uint8(255*p2))
-
-        #gti = gti.cpu().numpy()
-        #p1 = gti[0]
-        #p2 = gti[1]
-        #io.imsave("./debug/%d_s1.tif" % rand, np.uint8(255*p1))
-        #io.imsave("./debug/%d_s2.tif" % rand, np.uint8(255*p2))
-        """
 
         return loss, proj
 
-
-"""
-Tensor = torch.cuda.FloatTensor
-data = DataLoader()
-loss = AlignLoss()
-
-loader = data.generator()
-for rgb, gti, seg in loader:
-    trs = Variable(Tensor(2*np.random.rand(2, 3, 512, 512)-1))
-
-    rgb = Variable(Tensor(rgb))
-    gti = Variable(Tensor(gti))
-    seg = Variable(Tensor(seg))
-
-    rgb = rgb.permute(0,3,1,2)
-    gti = gti.permute(0,3,1,2)
-    seg = seg.permute(0,3,1,2)
-
-    l, p = loss(rgb, gti, seg, trs)
-    print(l)
-"""
-
-
-
-
-            

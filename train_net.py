@@ -106,10 +106,6 @@ def train(models_path='./saved_models/', batch_size=2, \
             if (i % save_sample == 0):
                 mask = gti[:,0,:,:].unsqueeze(1)
                 mask = torch.cat((mask, mask), dim=1)
-                #rgb[:,:,border,:] = 1
-                #rgb[:,:,-border,:] = 1
-                #rgb[:,:,:,border] = 1
-                #rgb[:,:,:,-border] = 1
                 sample_images(i, rgb, trs, [gti, mod_inj, proj, seg_miss, seg_inj])
         torch.save(net.state_dict(), os.path.join(models_path, '_'.join(["alignNet", str(epoch)])))
 

@@ -205,10 +205,6 @@ class DataLoader():
                     missalignment = temp
                     is_overlapped = False
 
-        #io.imsave("ciao.png", np.uint8(gti*255))
-        #io.imsave("ciaociao.png", np.uint8(missalignment*255))
-        #exit()
-
         return missalignment
 
 
@@ -259,7 +255,7 @@ class DataLoader():
         w = rgb.shape[0]
 
         """
-        Extract a thumbnail and perform some data augmentation
+        Extract thumbnail and perform some data augmentation
         """
         void = True
         while void:
@@ -327,14 +323,7 @@ class DataLoader():
             if np.count_nonzero(win_inj):
             	void = False
 
-
-        #io.imsave("gti.tif", np.uint8(255*win_gti))
-        #io.imsave("mod.tif", np.uint8(255*win_mod))
-        #io.imsave("inj.tif", np.uint8(255*win_inj))
-        #io.imsave("miss.tif", np.uint8(255*win_miss))
         win_inj = self.filter_injections(win_inj, win_mod)
-        #io.imsave("inj.tif", np.uint8(255*win_inj))
-        #io.imsave("sum.tif", np.uint8(255*(win_inj+win_mod)))
 
         win_rgb = win_rgb.astype(np.float32)
 
