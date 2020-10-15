@@ -13,6 +13,10 @@ If you use this implementation please cite the following publication:
 
 <p align="center"><img width=100% src="README.gif"></p>
 
+Explanatory video of the approach:
+
+[![Watch the video](https://img.youtube.com/vi/glNhDSu1y2U/maxresdefault.jpg)](https://youtu.be/glNhDSu1y2U)
+
 # Dependencies
 
 *  cuda 10.2
