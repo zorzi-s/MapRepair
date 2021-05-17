@@ -1,21 +1,50 @@
-MIT License
+SOFTWARE LICENSE AGREEMENT
 
-Copyright (c) 2021 ICG Aerial Vision Group
+ICG Software – 2021, all rights reserved, hereinafter "the Software".
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This software has been developed by researchers of ICG (Institute of Computer Graphics and Vision).
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Institute of Computer Graphics and Vision (ICG), Inffeldgasse 16/II,
+8010 Graz, Austria
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+ICG holds all the ownership rights on the Software.
+
+The Software is still being currently developed. It is the ICG’s aim for the Software 
+to be used by the scientific community so as to test it and, evaluate it so that ICG may improve it.
+
+For these reasons ICG has decided to distribute the Software.
+
+ICG grants to the academic user, a free of charge, without right to sub license non-exclusive right 
+to use the Software for research purposes for a period of one (1) year from the date of the download 
+of the source code. Any other use without of prior consent of ICG is prohibited.
+
+The academic user explicitly acknowledges having received from ICG all information allowing him 
+to appreciate the adequacy between of the Software and his needs and to undertake all necessary 
+precautions for his execution and use.
+
+The Software is provided only as a source.
+
+In case of using the Software for a publication or other results obtained through the use of the Software, 
+user should cite the Software as follows :
+
+@article{zorzi2020map,
+  title={Map-Repair: Deep Cadastre Maps Alignment and Temporal Inconsistencies Fix in Satellite Images},
+  author={Zorzi, Stefano and Bittner, Ksenia and Fraundorfer, Friedrich},
+  journal={arXiv preprint arXiv:2007.12470},
+  year={2020}
+}
+
+Every user of the Software could communicate to the developers [stefano.zorzi@icg.tugraz.at] 
+his or her remarks as to the use of the Software.
+
+THE USER CANNOT USE, EXPLOIT OR COMMERCIALLY DISTRIBUTE THE SOFTWARE WITHOUT PRIOR AND EXPLICIT CONSENT 
+OF ICG (fraundorfer@icg.tugraz.at). ANY SUCH ACTION WILL CONSTITUTE A FORGERY.
+
+THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT ANY WARRANTIES OF ANY NATURE AND ANY EXPRESS OR IMPLIED WARRANTIES,
+WITH REGARDS TO COMMERCIAL USE, PROFESSIONAL USE, LEGAL OR NOT, OR OTHER, OR COMMERCIALIZATION OR ADAPTATION.
+
+UNLESS EXPLICITLY PROVIDED BY LAW, IN NO EVENT, SHALL ICG OR THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, 
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
+GOODS OR SERVICES, LOSS OF USE, DATA, OR PROFITS OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
