@@ -3,11 +3,13 @@ This repository contains the implementation for our publication "Map-Repair: Dee
 If you use this implementation please cite the following publication:
 
 ~~~
-@article{zorzi2020map,
-  title={Map-Repair: Deep Cadastre Maps Alignment and Temporal Inconsistencies Fix in Satellite Images},
+@inproceedings{zorzi2020map,
+  title={Map-repair: Deep cadastre maps alignment and temporal inconsistencies fix in satellite images},
   author={Zorzi, Stefano and Bittner, Ksenia and Fraundorfer, Friedrich},
-  journal={arXiv preprint arXiv:2007.12470},
-  year={2020}
+  booktitle={IGARSS 2020-2020 IEEE International Geoscience and Remote Sensing Symposium},
+  pages={1829--1832},
+  year={2020},
+  organization={IEEE}
 }
 ~~~
 
